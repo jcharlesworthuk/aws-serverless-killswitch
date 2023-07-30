@@ -18,7 +18,7 @@ async function setCloudfrontDistributionEnabled(cloudfront: CloudFrontClient, id
     console.log(updateReq);
     if (!dryRun) {
         await cloudfront.send(updateReq);
-        await Timeout.set(1000); // CloudFront rate limits requests but not sure how much by!
+        await Timeout.set(2000); // CloudFront rate limits requests but not sure how much by!
     }
 }
 

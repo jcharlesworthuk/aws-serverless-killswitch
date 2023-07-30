@@ -1,14 +1,5 @@
 import { Context, SNSEvent } from "aws-lambda";
-import { CloudFrontClient, AssociateAliasCommand } from "@aws-sdk/client-cloudfront";
-import { APIGatewayClient, GetStageCommand, UpdateStageCommand, GetRestApisCommand, GetStagesCommand } from "@aws-sdk/client-api-gateway";
-import { disableApiGatways, reEnableApiGatways } from "./services/api-gateway.js";
-import { disableCloudfronts, reEnableCloudfronts } from "./services/cloudfront.js";
-import { disableAllLambdaTriggers, reEnableAllLambdaTriggers } from "./services/lambda-triggers.js";
-import { disableEventBridgeRules, reEnableEventBridgeRules } from "./services/eventbridge-rules.js";
 import { EnableDisableOptions, EnabledState } from "./models.js";
-import { disableS3BucketNotifications } from "./services/s3-notifications.js";
-import { disableSesInboundRulesets, reEnableSesInboundRulesets } from "./services/ses-inbound.js";
-import { disableAllSnsSubscriptions, reEnableAllSnsSubscriptions } from "./services/sns-triggers.js";
 import { DeleteObjectCommand, GetObjectCommand, PutObjectCommand, S3Client } from "@aws-sdk/client-s3";
 import { allDisableFunctions, allEnableFunctions } from "./services/all.js";
 
@@ -21,9 +12,12 @@ const stateFileKey = {
 
 export async function main(event: SNSEvent, context: Context) {
     console.log('EXECUTING FUNCTION...')
-    console.log(context);
-    console.log(event);
     console.log(event.Records[0].Sns);
+
+    if (event.Records[0].Sns.Subject === "SNS Topic Verified!") {
+        console.log('Cool, you have just link the killswitch.  Not actually executing it at this time though');
+        return 'ok';
+    }
 
     const message = event.Records[0].Sns.Message;
     const setEnabled = message === 'ENABLE';

@@ -1,10 +1,10 @@
-import { EnableDisableFunction, EnableDisableOptions } from "../models";
-import { disableApiGatways, reEnableApiGatways } from "./api-gateway";
-import { disableCloudfronts, reEnableCloudfronts } from "./cloudfront";
-import { disableEventBridgeRules, reEnableEventBridgeRules } from "./eventbridge-rules";
-import { disableAllLambdaTriggers, reEnableAllLambdaTriggers } from "./lambda-triggers";
-import { disableSesInboundRulesets, reEnableSesInboundRulesets } from "./ses-inbound";
-import { disableAllSnsSubscriptions, reEnableAllSnsSubscriptions } from "./sns-triggers";
+import { EnableDisableFunction, EnableDisableOptions } from "../models.js";
+import { disableApiGatways, reEnableApiGatways } from "./api-gateway.js";
+import { disableCloudfronts, reEnableCloudfronts } from "./cloudfront.js";
+import { disableEventBridgeRules, reEnableEventBridgeRules } from "./eventbridge-rules.js";
+import { disableAllLambdaTriggers, reEnableAllLambdaTriggers } from "./lambda-triggers.js";
+import { disableSesInboundRulesets, reEnableSesInboundRulesets } from "./ses-inbound.js";
+import { disableAllSnsSubscriptions, reEnableAllSnsSubscriptions } from "./sns-triggers.js";
 
 export const allEnableFunctions: EnableDisableFunction[] =[ 
     reEnableCloudfronts,

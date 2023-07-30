@@ -32,5 +32,5 @@ functions:
     handler: killswitch.main
     timeout: 300
     events:
-      - sns: ${opt:stage, 'noapp'}-email-forwarder
+      - sns: billing-killswitch-triggers
 

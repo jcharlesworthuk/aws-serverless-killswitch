@@ -64,6 +64,25 @@ To re-enable your services after the killswitch has been tripped, run the Lambda
 3. Ensure you have the AWS CLI installed
 4. `sls deploy --stage prod`
 
+## Linking to an AWS Budget Alert
+
+Follow this guide to set up the AWS Budget Alert: [Configuring AWS Budgets actions
+](https://docs.aws.amazon.com/cost-management/latest/userguide/budgets-controls.html)
+
+The SNS topic will be created in the region you deploy to when you do `sls deploy` (previous step), it will be called **billing-killswitch-triggers**.  You will need to give your Budget alert permission to publish to this topic by appending the policy statement to the Access Policy of the SNS topic.  The policy statement will look like this:
+
+```json
+{
+  "Sid": "AWSBudgets-notification-1",
+  "Effect": "Allow",
+  "Principal": {
+    "Service": "budgets.amazonaws.com"
+  },
+  "Action": "SNS:Publish",
+  "Resource": "<insert-ARN-here>"
+}
+```
+
 ## Making a Dry Run
 
 There are `if()` statements throughout that respect a flag called `DRY_RUN`.  You can change this to true in the `serverless.yml` file if you like.  It is also created as an environmen variable on the Lambda that gets deployed so you can change it when the function has been deployed.
