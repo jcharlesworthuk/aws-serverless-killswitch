@@ -6,7 +6,7 @@
     "type": "git",
     "url": "git://github.com/jcharlesworthuk/aws-serverless-killswitch.git"
   },
-  "description": "Killswiatch Function for Serverless Applications on AWS",
+  "description": "Killswitch Function for Serverless Applications on AWS",
   "author": "James Charlesworth",
   "license": "MIT",
   "dependencies": {
