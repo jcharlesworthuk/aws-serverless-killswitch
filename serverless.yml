@@ -1,0 +1,36 @@
+service: billing-killswitch
+plugins:
+  - serverless-plugin-typescript
+
+useDotenv: true
+
+package:
+  patterns:
+    - '!node_modules/@aws-sdk/**'
+
+provider:
+  name: aws
+  runtime: nodejs18.x
+  stackName: billing-killswitch
+  region: eu-west-2
+  versionFunctions: false
+  deploymentBucket: ${env:STATE_BUCKET}
+  iam:
+    role:
+      name: BillingKillswitchRole
+      path: /
+      managedPolicies:
+        - arn:aws:iam::aws:policy/AdministratorAccess
+  environment:    
+    DRY_RUN: false
+    STATE_BUCKET: ${env:STATE_BUCKET}
+    REGION_LIST: ${env:REGION_LIST}
+
+functions:
+
+  killswitch:
+    handler: killswitch.main
+    timeout: 300
+    events:
+      - sns: ${opt:stage, 'noapp'}-email-forwarder
+

@@ -1,0 +1,29 @@
+{
+  "name": "aws-serverless-killswitch",
+  "version": "1.0.0",
+  "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/jcharlesworthuk/aws-serverless-killswitch.git"
+  },
+  "description": "Killswiatch Function for Serverless Applications on AWS",
+  "author": "James Charlesworth",
+  "license": "MIT",
+  "dependencies": {
+    "@aws-sdk/client-api-gateway": "^3.370.0",
+    "@aws-sdk/client-cloudfront": "^3.370.0",
+    "@aws-sdk/client-eventbridge": "^3.370.0",
+    "@aws-sdk/client-lambda": "^3.370.0",
+    "@aws-sdk/client-s3": "^3.374.0",
+    "@aws-sdk/client-ses": "^3.370.0",
+    "@aws-sdk/client-sns": "^3.370.0",
+    "await-timeout": "^1.1.1",
+    "aws-lambda": "^1.0.7"
+  },
+  "devDependencies": {
+    "@types/aws-lambda": "^8.10.115",
+    "@types/node": "^20.4.4",
+    "serverless-plugin-typescript": "^2.1.5",
+    "typescript": "^5.1.6"
+  }
+}
